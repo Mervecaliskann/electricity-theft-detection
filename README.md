@@ -59,7 +59,7 @@ En etkili özellikler okunamayan gün oranı, tüketimdeki dalgalanma ve trend. 
 
 ### Referans çalışmadan farklar
 
-Başlangıç noktam Kaggle'daki [bu çalışmaydı]([KAGGLE_NOTEBOOK_LINK](https://www.kaggle.com/code/kaanfikirkoca/using-data-balancing-techniques-and-xgboost)). Orada eksik değerler farklı aboneler arasında dolduruluyor ve ölçekleme test verisi dahil tüm veriye uygulanıyordu. Bu hataları düzelttim. Referans çalışma yaklaşık 0.65 precision ve recall raporluyor. Bu projedeki sonuçlar daha düşük ama sızıntı içermeyen bir değerlendirmeye dayanıyor.
+Başlangıç noktam Kaggle'daki [bu çalışmaydı](https://www.kaggle.com/code/kaanfikirkoca/using-data-balancing-techniques-and-xgboost). Orada eksik değerler farklı aboneler arasında dolduruluyor ve ölçekleme test verisi dahil tüm veriye uygulanıyordu. Bu hataları düzelttim. Referans çalışma yaklaşık 0.65 precision ve recall raporluyor. Bu projedeki sonuçlar daha düşük ama sızıntı içermeyen bir değerlendirmeye dayanıyor.
 
 ### Sınırlamalar
 
@@ -133,7 +133,7 @@ The strongest signals are the share of unread days, consumption variability and 
 
 ### Differences from the reference work
 
-My starting point was [this Kaggle notebook]([KAGGLE_NOTEBOOK_LINK](https://www.kaggle.com/code/kaanfikirkoca/using-data-balancing-techniques-and-xgboost)). It filled missing values across different customers and fit the scaler on the whole dataset, including the test data. I fixed these issues. The reference reports around 0.65 precision and recall. The results here are lower, but they come from an evaluation without data leakage.
+My starting point was [this Kaggle notebook](https://www.kaggle.com/code/kaanfikirkoca/using-data-balancing-techniques-and-xgboost). It filled missing values across different customers and fit the scaler on the whole dataset, including the test data. I fixed these issues. The reference reports around 0.65 precision and recall. The results here are lower, but they come from an evaluation without data leakage.
 
 ### Limitations
 
