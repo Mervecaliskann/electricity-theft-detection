@@ -57,9 +57,25 @@ Accuracy bu problemde yanıltıcı olduğu için ana metrik olarak kullanmadım.
 
 En etkili özellikler okunamayan gün oranı, tüketimdeki dalgalanma ve trend. Sayacı sık okunamayan, tüketimi düzensiz ve zamanla artan aboneler daha riskli görülüyor.
 
+### Karar destek paneli (Power BI)
+
+Modelin ürettiği risk skorlarını Power BI'da bir panele dönüştürdüm. Panel, saha ekibine gidecek en riskli 50 abonenin listesini, risk seviyelerine göre isabet oranını ve rastgele denetime göre kaç kat daha verimli olunduğunu gösteriyor. Dilimleyiciden bir risk seviyesi seçildiğinde tüm göstergeler ona göre güncelleniyor.
+
+![Power BI karar destek paneli](images/13_powerbi_dashboard.png)
+
+Kullanılan DAX ölçüleri:
+
+```
+Isabet Orani = DIVIDE([Kacak Sayisi], [Abone Sayisi])
+Rastgele Isabet = CALCULATE([Isabet Orani], ALL(risk_scores_test))
+Rastgeleye Gore Kat = DIVIDE([Isabet Orani], [Rastgele Isabet])
+```
+
+`Rastgele Isabet` ölçüsü `ALL` ile filtreleri kaldırıp tüm test setinin kaçak oranını hesaplıyor. Böylece hangi risk seviyesi seçilirse seçilsin, rastgele denetimle doğrudan karşılaştırma yapılabiliyor.
+
 ### Referans çalışmadan farklar
 
-Başlangıç noktam Kaggle'daki [bu çalışmaydı](KAGGLE_NOTEBOOK_LINK). Orada eksik değerler farklı aboneler arasında dolduruluyor ve ölçekleme test verisi dahil tüm veriye uygulanıyordu. Bu hataları düzelttim. Referans çalışma yaklaşık 0.65 precision ve recall raporluyor. Bu projedeki sonuçlar daha düşük ama sızıntı içermeyen bir değerlendirmeye dayanıyor.
+Başlangıç noktam Kaggle'daki [bu çalışmaydı](https://www.kaggle.com/code/kaanfikirkoca/using-data-balancing-techniques-and-xgboost). Orada eksik değerler farklı aboneler arasında dolduruluyor ve ölçekleme test verisi dahil tüm veriye uygulanıyordu. Bu hataları düzelttim. Referans çalışma yaklaşık 0.65 precision ve recall raporluyor. Bu projedeki sonuçlar daha düşük ama sızıntı içermeyen bir değerlendirmeye dayanıyor.
 
 ### Sınırlamalar
 
@@ -75,6 +91,8 @@ pip install -r requirements.txt
 ```
 
 Ardından `electricity_theft_detection.ipynb` dosyasını Jupyter veya Google Colab'de açın. Veri seti notebook içinde `kagglehub` ile otomatik indirilir. Tüm hücrelerin çalışması CPU'da yaklaşık 15 ile 20 dakika sürer.
+
+Power BI paneli için `risk_scoring_dashboard.pbix` dosyasını Power BI Desktop ile açın. Panel, notebook'un ürettiği `risk_scores_test.csv` dosyasını kullanır.
 
 ---
 
@@ -131,9 +149,25 @@ Accuracy is misleading here, so I did not use it as a main metric. A model that 
 
 The strongest signals are the share of unread days, consumption variability and trend. Customers whose meters are often unread, whose consumption is irregular and increasing over time are seen as riskier.
 
+### Decision support dashboard (Power BI)
+
+I turned the model's risk scores into a Power BI dashboard. It shows the top 50 riskiest customers as an inspection list for field teams, the hit rate by risk level, and how many times more efficient the inspections are compared to random selection. Selecting a risk level in the slicer updates every indicator.
+
+![Power BI decision support dashboard](images/13_powerbi_dashboard.png)
+
+DAX measures used:
+
+```
+Isabet Orani = DIVIDE([Kacak Sayisi], [Abone Sayisi])
+Rastgele Isabet = CALCULATE([Isabet Orani], ALL(risk_scores_test))
+Rastgeleye Gore Kat = DIVIDE([Isabet Orani], [Rastgele Isabet])
+```
+
+The `Rastgele Isabet` (random hit rate) measure removes all filters with `ALL` and computes the theft rate of the whole test set, so any selected risk level can be compared directly with random inspection.
+
 ### Differences from the reference work
 
-My starting point was [this Kaggle notebook](KAGGLE_NOTEBOOK_LINK). It filled missing values across different customers and fit the scaler on the whole dataset, including the test data. I fixed these issues. The reference reports around 0.65 precision and recall. The results here are lower, but they come from an evaluation without data leakage.
+My starting point was [this Kaggle notebook](https://www.kaggle.com/code/kaanfikirkoca/using-data-balancing-techniques-and-xgboost). It filled missing values across different customers and fit the scaler on the whole dataset, including the test data. I fixed these issues. The reference reports around 0.65 precision and recall. The results here are lower, but they come from an evaluation without data leakage.
 
 ### Limitations
 
@@ -149,3 +183,5 @@ pip install -r requirements.txt
 ```
 
 Then open `electricity_theft_detection.ipynb` in Jupyter or Google Colab. The dataset is downloaded automatically inside the notebook with `kagglehub`. Running all cells takes about 15 to 20 minutes on CPU.
+
+To view the dashboard, open `risk_scoring_dashboard.pbix` in Power BI Desktop. It uses the `risk_scores_test.csv` file produced by the notebook.
