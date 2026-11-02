@@ -90,7 +90,7 @@ Başlangıç noktam Kaggle'daki [bu çalışmaydı](https://www.kaggle.com/code/
 pip install -r requirements.txt
 ```
 
-Ardından `electricity_theft_detection.ipynb` dosyasını Jupyter veya Google Colab'de açın. Veri seti notebook içinde `kagglehub` ile otomatik indirilir. Tüm hücrelerin çalışması CPU'da yaklaşık 15 ile 20 dakika sürer.
+Ardından `electricity_theft_detection.ipynb` dosyasını Jupyter veya Google Colab'de açın. Veri seti notebook içinde `kagglehub` ile otomatik indirilir. Tüm hücrelerin çalışması CPU'da yaklaşık 15 ile 20 dakika sürer. Notebook İngilizce yazılmıştır.
 
 Power BI paneli için `risk_scoring_dashboard.pbix` dosyasını Power BI Desktop ile açın. Panel, notebook'un ürettiği `risk_scores_test.csv` dosyasını kullanır.
 
@@ -182,6 +182,6 @@ My starting point was [this Kaggle notebook](https://www.kaggle.com/code/kaanfik
 pip install -r requirements.txt
 ```
 
-Then open `electricity_theft_detection.ipynb` in Jupyter or Google Colab. The dataset is downloaded automatically inside the notebook with `kagglehub`. Running all cells takes about 15 to 20 minutes on CPU.
+Then open `electricity_theft_detection.ipynb` in Jupyter or Google Colab. The dataset is downloaded automatically inside the notebook with `kagglehub`. Running all cells takes about 15 to 20 minutes on CPU. The notebook is written in English.
 
 To view the dashboard, open `risk_scoring_dashboard.pbix` in Power BI Desktop. It uses the `risk_scores_test.csv` file produced by the notebook.
